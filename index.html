@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Faria">
+    <meta property="og:description" content="Faria click this link">
+    <meta property="og:image" content="bg1.jpg"> 
+
+    <title>Faria</title> <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600&family=Quicksand:wght@400;500&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --text-white: #ffffff;
+            --glass-bg: rgba(0, 0, 0, 0.5); 
+        }
+
+        body, html {
+            margin: 0; padding: 0;
+            height: 100%;
+            font-family: 'Quicksand', sans-serif;
+            overflow: hidden;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: #000;
+        }
+
+        /* ব্যাকগ্রাউন্ড ইমেজ কন্টেইনার */
+        #background-container {
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            z-index: -2;
+            transition: background-image 1s ease-in-out;
+            background-image: url('bg1.jpg'); 
+        }
+
+        /* হালকা কালো আস্তরণ যাতে লেখা পড়া যায় */
+        .background-overlay {
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            background-color: rgba(0, 0, 0, 0.3);
+            z-index: -1;
+        }
+
+        /* টেক্সট বক্স ডিজাইন (নো ব্লার) */
+        .container {
+            width: 85%;
+            max-width: 500px;
+            text-align: center;
+            padding: 50px 30px;
+            border-radius: 30px;
+            background: var(--glass-bg);
+            backdrop-filter: blur(0px); 
+            -webkit-backdrop-filter: blur(0px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6);
+            z-index: 10;
+        }
+
+        .page { display: none; animation: fadeIn 1.5s ease; }
+        .page.active { display: block; }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* সব টেক্সট সাদা */
+        .storybook-text {
+            font-family: 'Dancing Script', cursive;
+            font-size: 2.2rem;
+            color: var(--text-white);
+            margin-bottom: 25px;
+            text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.8);
+        }
+
+        .message-text {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            margin-bottom: 35px;
+            color: var(--text-white);
+            text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.8);
+        }
+
+        .btn {
+            background: transparent;
+            border: 1px solid white;
+            color: white;
+            padding: 12px 30px;
+            border-radius: 30px;
+            cursor: pointer;
+            transition: 0.4s;
+            font-weight: 500;
+        }
+
+        .btn:hover {
+            background: white;
+            color: black;
+        }
+    </style>
+</head>
+<body>
+
+    <div id="background-container"></div>
+    <div class="background-overlay"></div>
+
+    <div class="container">
+        <div class="page active" id="page1">
+            <p class="storybook-text">Jannu,</p>
+            <p class="message-text">I have something to tell you.</p>
+            <button class="btn" onclick="nextPage(2)">Next</button>
+        </div>
+
+        <div class="page" id="page2">
+            <p class="storybook-text">My Everything ✨</p>
+            <p class="message-text">You are not just my bestie, you are my everything, my entire world. Every single moment spent with you is so special to me. Without you, my happiness is nothing but an act. To be honest, I miss you so much. And when I miss you, my whole world turns upside down. I don't know if I've said these things before, but I'm telling you now.</p>
+            <button class="btn" onclick="nextPage(3)">Continue</button>
+        </div>
+
+        <div class="page" id="page3">
+            <p class="storybook-text">I'm Sorry </p>
+            <p class="message-text">I know I’ve made a mistake and hurt you. Honestly, I feel terrible about it. I know I act foolishly sometimes, and that’s exactly what happened this time. It hurts me deeply to know that my words caused you pain.</p>
+            <button class="btn" onclick="nextPage(4)">Next</button>
+        </div>
+
+        <div class="page" id="page4">
+            <p class="storybook-text">Missing You 🌙</p>
+            <p class="message-text">Being without you is the hardest thing I've ever had to do. Time seems to stand still, and everything feels so empty. I might make mistakes often, but believe me, I can't even dream of losing you. <b>I exist only because you do.</b> Please, don't stay away anymore.</p>
+            <button class="btn" onclick="nextPage(5)">Almost there</button>
+        </div>
+
+        <div class="page" id="page5">
+            <p class="storybook-text">Forgive Me? </p>
+            <p class="message-text">I just want to say, alabu so much. I don't want any more distance between our beautiful bond. Will you please forgive me?</p>
+            <button class="btn" onclick="nextPage(6)">Yes, I forgive you</button>
+        </div>
+
+        <div class="page" id="page6">
+            <h1 class="storybook-text" style="font-size: 3rem;">Alabu jaanu 😘</h1>
+        </div>
+    </div>
+
+    <script>
+        const images = ['bg1.jpg', 'bg2.jpg', 'bg3.jpg', 'bg4.jpg', 'bg5.jpg', 'bg6.jpg'];
+
+        function nextPage(n) {
+            document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+            document.getElementById('page' + n).classList.add('active');
+            
+            // ব্যাকগ্রাউন্ড ছবি পরিবর্তন
+            document.getElementById('background-container').style.backgroundImage = `url('${images[n-1]}')`;
+        }
+    </script>
+</body>
+</html>
